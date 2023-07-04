@@ -145,6 +145,5 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   addRecipeView.addHandlerUpload(controlAddRecipe);
   paginationView.addHandlerRenderPagination(controlPagination);
-  console.log('Now on Git!');
 };
 init();
