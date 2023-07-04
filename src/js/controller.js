@@ -8,8 +8,8 @@ import searchResultsView from './views/searchResultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
-import { async } from 'regenerator-runtime';
-import { timeout } from './helpers.js';
+//import { async } from 'regenerator-runtime';
+//import { timeout } from './helpers.js';
 
 // Parcel hot reloading
 // if (module.hot) module.hot.accept();
@@ -40,7 +40,7 @@ const controlRecipes = async function () {
   }
 };
 
-const controlSearchResults = async function (e) {
+const controlSearchResults = async function () {
   try {
     // 1) Get Search Query
     const query = searchView.getQuery();

@@ -1,4 +1,4 @@
-import { async } from 'regenerator-runtime';
+// import { async } from 'regenerator-runtime';
 import { TIMEOUT_SEC } from './config';
 
 export const timeout = function (s) {
@@ -27,7 +27,6 @@ export const AJAX = async function (url, uploadData = undefined) {
 
     if (!response.ok) {
       throw new Error(`${data.message} (Status Code: ${response.status})`);
-      return;
     }
     return data;
   } catch (err) {
