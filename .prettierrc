@@ -1,0 +1,12 @@
+{
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": ".parcelrc",
+      "options": {
+        "parser": "json5"
+      }
+    }
+  ]
+}

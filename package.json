@@ -1,0 +1,19 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "",
+  "source": "./index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build index.html --dist-dir ./dist --public-url ./ --no-scope-hoist"
+  },
+  "author": "Theo Ribeiro",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.0",
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "fractional": "^1.0.0"
+  }
+}
