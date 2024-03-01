@@ -29,7 +29,7 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     image: recipe.image_url,
     sourceURL: recipe.source_url,
-    ...(recipe.key && { key: recipe.key }), //trick to conditionally add properties to an object. we use short circuiting and then spread the result
+    ...(recipe.key && { key: recipe.key }),
   };
 };
 

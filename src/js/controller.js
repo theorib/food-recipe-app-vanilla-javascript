@@ -1,5 +1,3 @@
-// import 'core-js/stable'; // Polyfills to bring everything to be ES5 compatible
-// import 'regenerator-runtime/runtime'; // Polyfills for async functions
 import { MODAL_CLOSE_SECONDS } from './config.js';
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
@@ -8,8 +6,6 @@ import searchResultsView from './views/searchResultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
-//import { async } from 'regenerator-runtime';
-//import { timeout } from './helpers.js';
 
 ///////////////////////////////////////
 
