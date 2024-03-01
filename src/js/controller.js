@@ -11,9 +11,6 @@ import addRecipeView from './views/addRecipeView.js';
 //import { async } from 'regenerator-runtime';
 //import { timeout } from './helpers.js';
 
-// Parcel hot reloading
-// if (module.hot) module.hot.accept();
-
 ///////////////////////////////////////
 
 const controlRecipes = async function () {
