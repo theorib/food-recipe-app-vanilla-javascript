@@ -1,5 +1,8 @@
-import { API_URL, API_KEY, RESULTS_PER_PAGE } from './config.js';
+import { RESULTS_PER_PAGE } from './config.js';
 import { AJAX } from './helpers.js';
+
+const API_KEY = import.meta.env.VITE_API_KEY;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const state = {
   recipe: {},
