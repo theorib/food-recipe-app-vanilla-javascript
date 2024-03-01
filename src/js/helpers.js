@@ -10,6 +10,7 @@ export const timeout = function (s) {
 };
 
 export const AJAX = async function (url, uploadData = undefined) {
+  // eslint-disable-next-line no-useless-catch
   try {
     const fetchPromise = uploadData
       ? fetch(url, {
