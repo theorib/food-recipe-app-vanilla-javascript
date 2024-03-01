@@ -4,7 +4,7 @@
 
 This is the final project from ["The Complete JavaScript Course 2024: From Zero to Expert!"](https://www.udemy.com/course/the-complete-javascript-course/) that I completed on July 4th 2023.
 
-I have written all the JavaScript code for this app, usually writting code upfront on my own and then watching the course instructions. All css and proposed markup was written by the instructor [Jonas Schmedtmann](https://codingheroes.io/) and I don't claim any credit for it.
+I have written all the JavaScript code for this app, usually writting code upfront on my own and then watching the course instructions. All CSS and proposed markup was written by the instructor [Jonas Schmedtmann](https://codingheroes.io/) and I don't claim any credit for it. The app is **_not styled for mobile_**, only desktop.
 
 This is a recipe app that allows users to:
 
@@ -29,6 +29,8 @@ The app follows a Model View Controller (MVC) architecture using a Publisher-Sub
 - Basic recipe upload functionality
 - Built using [Vite](https://vitejs.dev)
 - [Deployed to Netlify](https://forkify-theo-ribeiro.netlify.app) using Github
+
+## Forking or cloning
 
 For this project to work, you will need to create a `.env` file at the root of your project directory with the following content:
 
