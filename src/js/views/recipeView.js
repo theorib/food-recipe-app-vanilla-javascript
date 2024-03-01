@@ -1,6 +1,6 @@
 import View from './view.js';
-import icons from 'url:../../img/icons.svg';
-import { Fraction } from 'fractional'; // include fractional library
+import icons from '../../img/icons.svg';
+import Fraction from 'fraction.js'; // include fractional library
 
 class RecipeView extends View {
   _parentELement = document.querySelector('.recipe');
@@ -138,6 +138,7 @@ class RecipeView extends View {
       const btn = e.target.closest('.btn--tiny');
       if (!btn) return; //Guard Clause
       const newServings = +btn.dataset.newServings;
+
       if (newServings > 0) handler(newServings);
     });
   }
@@ -152,24 +153,3 @@ class RecipeView extends View {
 }
 
 export default new RecipeView();
-
-// addHandlerRecipeClicks(handler) {
-//   this._parentELement.addEventListener('click', function (e) {
-//     const btnTiny = e.target.closest('.btn--tiny');
-//     const btnRound = e.target.closest('.btn--round');
-
-//     if (!btnTiny && !btnRound) return;
-
-//     if (btnTiny) {
-//       const newServings = +btnTiny.dataset.newservings;
-//       handler(newServings);
-//       return;
-//     }
-//     if (btnRound) {
-//       console.log('bookmark!');
-//       // const newServings = +btnTiny.dataset.newservings;
-//       // handler(newServings);
-//       return;
-//     }
-//   });
-// }

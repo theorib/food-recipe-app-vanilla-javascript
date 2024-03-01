@@ -1,5 +1,3 @@
-// import 'core-js/stable'; // Polyfills to bring everything to be ES5 compatible
-// import 'regenerator-runtime/runtime'; // Polyfills for async functions
 import { MODAL_CLOSE_SECONDS } from './config.js';
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
@@ -8,11 +6,6 @@ import searchResultsView from './views/searchResultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
-import { async } from 'regenerator-runtime';
-import { timeout } from './helpers.js';
-
-// Parcel hot reloading
-// if (module.hot) module.hot.accept();
 
 ///////////////////////////////////////
 
@@ -40,7 +33,7 @@ const controlRecipes = async function () {
   }
 };
 
-const controlSearchResults = async function (e) {
+const controlSearchResults = async function () {
   try {
     // 1) Get Search Query
     const query = searchView.getQuery();

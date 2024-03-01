@@ -1,6 +1,5 @@
 import View from './view.js';
-import { API_KEY } from '../config.js';
-import icons from 'url:../../img/icons.svg';
+import icons from '../../img/icons.svg';
 class PreviewView extends View {
   _parentELement = '';
 
