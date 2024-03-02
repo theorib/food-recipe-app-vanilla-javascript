@@ -29,6 +29,7 @@ export const AJAX = async function (url, uploadData = undefined) {
     }
     return data;
   } catch (err) {
-    throw err; //passing the error on to the next function
+    console.error(err);
+    throw err;
   }
 };

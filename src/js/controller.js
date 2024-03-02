@@ -11,6 +11,7 @@ import addRecipeView from './views/addRecipeView.js';
 
 const controlRecipes = async function () {
   try {
+    // Get id hash from URL
     const id = window.location.hash.slice(1);
 
     if (!id) return; // Guard clause
@@ -25,7 +26,7 @@ const controlRecipes = async function () {
     // 2) Loading recipe
     await model.loadRecipe(id);
 
-    // 3) Rendering Recipe
+    // 3) Render a recipe if there is one
     recipeView.render(model.state.recipe);
   } catch (err) {
     console.log(err);
@@ -38,55 +39,59 @@ const controlSearchResults = async function () {
     // 1) Get Search Query
     const query = searchView.getQuery();
     if (!query) return; //Guard Clause
-    // console.log(query);
 
     // 2) Get Search Results
     await model.loadSearchResults(query);
-    // console.log(model.state.search);
 
     // 3) Render Search Results (paginated)
     searchResultsView.render(model.getSearchResultsPage());
 
-    // Throw an error if there are no search results and return
+    // Render an error message if there are no search results
     if (model.state.search.resultCount === 0) {
       searchResultsView.renderError();
       return;
     }
-    // 4) Add Pagination
+    // 4) Render the Pagination component
     paginationView.render(model.state.search);
   } catch (err) {
     console.error(err);
-    // searchResultsView.renderError();
+    searchResultsView.renderError();
   }
 };
 
 const controlPagination = function (goToPage) {
+  // Render current page's search results
   searchResultsView.render(model.getSearchResultsPage(goToPage));
+  // Render the Pagination component
   paginationView.render(model.state.search);
 };
 
 const controlServings = function (newServings) {
-  // Update recipe servings gets updated
+  // Update recipe servings
   model.updateServings(newServings);
-  // Update UI
+  // Update UI with the new servings
   recipeView.update(model.state.recipe);
 };
 
 const controlBookmarkRecipe = function () {
-  // Add Bookmark
+  // Add a Bookmark if the recipe is not bookmarked already
   if (!model.state.recipe.bookmarked) {
     model.addBookmarkRecipe(model.state.recipe);
   }
-  // Remove Bookmark
+  // Remove Bookmark if the recipe is already bookmarked
   else {
     model.removeBookmarkRecipe(model.state.recipe.id);
   }
+  // Update UI with the bookmarked recipe
   recipeView.update(model.state.recipe);
+  // Render Bookmarks component
   bookmarksView.render(model.state.bookmarks);
+  // Save bookmarks to local storage
   model.setLocalStorageBookmarks();
 };
 
 const controlBookmarkRender = function () {
+  // Render Bookmarks component
   bookmarksView.render(model.state.bookmarks);
 };
 
@@ -95,7 +100,7 @@ const controlAddRecipe = async function (newRecipe) {
     // Render spinner
     addRecipeView.renderSpinner();
 
-    //Send new Recipe
+    // Upload new Recipe
     await model.uploadRecipe(newRecipe);
 
     // Render Recipe
@@ -103,7 +108,6 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Change URL
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
-    // window.location.hash = model.state.recipe.id;
 
     // Render Success Message
     addRecipeView.renderMessage();
@@ -111,7 +115,7 @@ const controlAddRecipe = async function (newRecipe) {
     // Render Bookmarks
     bookmarksView.render(model.state.bookmarks);
 
-    // Save recipe in local storage
+    // Save recipe to local storage
     model.setLocalStorageBookmarks();
 
     // Close Modal
@@ -124,19 +128,37 @@ const controlAddRecipe = async function (newRecipe) {
       addRecipeView.render(model.state.recipe);
     }, MODAL_CLOSE_SECONDS * 1000 + 1000);
   } catch (err) {
-    addRecipeView.renderError(err);
     console.error(err);
+    // Render Error messages
+    addRecipeView.renderError(err);
   }
 };
 
 const init = function () {
+  // Get Bookmarks from local storage
   model.getLocalStorageBookmarks();
+
+  // Assign controlBookmarkRender to the event listener in bookmarksView
   bookmarksView.addHandlerRender(controlBookmarkRender);
+
+  // Assign controlRecipes to the event listener in recipeView
   recipeView.addHandlerRenderRecipe(controlRecipes);
+
+  // Assign controlServings to the event listener in recipeView
   recipeView.addHandlerUpdateServings(controlServings);
+
+  // Assign controlBookmarkRecipe to the event listener in recipeView
   recipeView.addHandlerBookmarkRecipe(controlBookmarkRecipe);
+
+  // Assign controlSearchResults to the event listener in searchView
   searchView.addHandlerSearch(controlSearchResults);
+
+  // Assign controlPagination to the event listener in paginationView
   addRecipeView.addHandlerUpload(controlAddRecipe);
+
+  // Assign controlPagination to the event listener in paginationView
   paginationView.addHandlerRenderPagination(controlPagination);
 };
+
+// Initialize the app, adding event listeners to the views and getting bookmarks from local storage
 init();
