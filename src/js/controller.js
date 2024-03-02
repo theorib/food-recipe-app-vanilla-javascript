@@ -131,6 +131,11 @@ const controlAddRecipe = async function (newRecipe) {
     console.error(err);
     // Render Error messages
     addRecipeView.renderError(err);
+
+    // Reset Modal
+    setTimeout(function () {
+      addRecipeView.render(model.state.recipe);
+    }, MODAL_CLOSE_SECONDS * 1000 + 1000);
   }
 };
 

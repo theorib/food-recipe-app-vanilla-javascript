@@ -37,7 +37,7 @@ class View {
   }
 
   update(data) {
-    // This function basically creates a virtual DOM and replaces only elements that had different text or different attributes
+    // Create a virtual DOM and replace only elements that have different text or different attributes
 
     if (!data || data.lenght === 0) return this.renderError();
 
