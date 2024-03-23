@@ -16,10 +16,10 @@ This is a recipe app that allows users to:
 
 - Search for recipes or ingredients
 - Create and upload their own recipes
-- See recipes cooking time, servings and ingredients
-- Change the number of servings and get updated ingredients and quantities list
-- Bookmark favorite recipes to view them later
-- View their own recipes and bookmarks later on (saved in their browser's localstorage)
+- See recipe cooking time, servings and ingredients
+- Change the number of servings and immediately see updated ingredients and quantities
+- Bookmark favorite recipes
+- View their own recipes and bookmarks on demand (saved on their browser's local storage)
 
 ## Features
 
@@ -27,7 +27,7 @@ The app follows a Model View Controller (MVC) architecture using a Publisher-Sub
 
 - Custom built state management
 - Custom built DOM updating algorithm using the DocumentFragment API
-- Custom built HTTP library based on the Fetch API and promises
+- Custom built HTTP library based on the Fetch API and Promises
 - Search functionality with results dinamicaly loaded from an API
 - Search dynamically displayed with pagination
 - Recipe deep-linking with hashes using the history API
@@ -40,10 +40,10 @@ The app follows a Model View Controller (MVC) architecture using a Publisher-Sub
 
 ## Room for improvement
 
-Here are a few features and considerations that this app could benefit from.
+Here are a few features and considerations that this app could benefit from:
 
-- A better, more structured and simpler to use system for addning new recipes were users don't have to pay careful attention to the input format. Using repeater fields for ingredients and different input fields with dropdowns for unit types, etc.
-- Authenticate users so their own recipes and favourites can be stored in the cloud.
+- A simpler, more user friendly interface for adding new recipes, where users don't have to pay careful attention to the input format. Using repeater fields for ingredients and different input fields with dropdowns for unit types.
+- Authenticate users so their own recipes and favourites can be stored in a database and not depend on the user's browser local storage.
 - Responsive styling.
 
 ## Forking or cloning
@@ -53,10 +53,10 @@ If you wish to clone/fork this project, you will need to create a `.env` file at
 `API_KEY=yourApiKey`
 `API_URL=https://forkify-api.herokuapp.com/api/v2/recipes`
 
-Replace `yourApiKey` with a key generated from [this link](https://forkify-api.herokuapp.com/v2):
+Replace `yourApiKey` with a key generated from [this link](https://forkify-api.herokuapp.com/v2).
 
 ## Context
 
 This is the final project for ["The Complete JavaScript Course 2024: From Zero to Expert!"](https://www.udemy.com/course/the-complete-javascript-course/) completed July 2023.
 
-I wrote all the JavaScript code for this app, always writing code before watching the taught content of the module. All CSS styles and proposed HTML markup for this project were provided by the course instructor [Jonas Schmedtmann](https://codingheroes.io/). The app is **not** styled for mobile, only for desktop.
+I wrote all the JavaScript code for this app, always writing code before watching the taught content of the module. All CSS styles and proposed HTML markup for this project were provided by the course instructor [Jonas Schmedtmann](https://codingheroes.io/). This app was **not** styled for mobile, only for desktop in this instance.
