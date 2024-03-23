@@ -1,19 +1,27 @@
-# Forkify App
+# Food Recipe App - Vanilla Javascript (Forkify)
 
-[A vanilla javascript Single Page Application (SPA)](https://forkify-theo-ribeiro.netlify.app) that allows users to search, bookmark and upload food recipes.
+A vanilla javascript Single Page Application (SPA) that allows users to search, bookmark and upload food recipes.
 
-This is the final project from ["The Complete JavaScript Course 2024: From Zero to Expert!"](https://www.udemy.com/course/the-complete-javascript-course/) that I completed on July 4th 2023.
+## Live Demo
 
-I have written all the JavaScript code for this app, usually writting code upfront on my own and then watching the course instructions. All CSS and proposed markup was written by the instructor [Jonas Schmedtmann](https://codingheroes.io/) and I don't claim any credit for it. The app is **_not styled for mobile_**, only desktop.
+[Check the live demo hosted on Netlify](https://food-recipe-app-vanilla-javascript.netlify.app)
+
+|   ![App dashboard](/screenshots/Screenshot-1.jpg 'App dashboard')   |            ![Bookings Page](/screenshots/Screenshot-4.jpg 'Bookings Page')            |
+| :-----------------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
+| ![Creating cabins](/screenshots/Screenshot-2.jpg 'Creating cabins') | ![Sales graph in dark mode](/screenshots/Screenshot-3.jpg 'Sales graph in dark mode') |
+
+## App Description
 
 This is a recipe app that allows users to:
 
-- Users can search for recipes or ingredients
-- Users can create and upload their own recipes
-- Recipes are displayed with cooking time, servings and ingredients
-- Users can change the number of servings and get updated ingredients and quantities list
-- Users can bookmark recipes to view them later
-- Users can view their own recipes and bookmarks later on (saved in their browser's localstorage)
+- Search for recipes or ingredients
+- Create and upload their own recipes
+- See recipes cooking time, servings and ingredients
+- Change the number of servings and get updated ingredients and quantities list
+- Bookmark favorite recipes to view them later
+- View their own recipes and bookmarks later on (saved in their browser's localstorage)
+
+## Features
 
 The app follows a Model View Controller (MVC) architecture using a Publisher-Subscriber pattern for event handling. The app features:
 
@@ -30,11 +38,25 @@ The app follows a Model View Controller (MVC) architecture using a Publisher-Sub
 - Built using [Vite](https://vitejs.dev)
 - [Deployed to Netlify](https://forkify-theo-ribeiro.netlify.app) using Github
 
+## Room for improvement
+
+Here are a few features and considerations that this app could benefit from.
+
+- A better, more structured and simpler to use system for addning new recipes were users don't have to pay careful attention to the input format. Using repeater fields for ingredients and different input fields with dropdowns for unit types, etc.
+- Authenticate users so their own recipes and favourites can be stored in the cloud.
+- Responsive styling.
+
 ## Forking or cloning
 
-For this project to work, you will need to create a `.env` file at the root of your project directory with the following content:
+If you wish to clone/fork this project, you will need to create a `.env` file at the root of your project directory with the following content:
 
 `API_KEY=yourApiKey`
 `API_URL=https://forkify-api.herokuapp.com/api/v2/recipes`
 
 Replace `yourApiKey` with a key generated from [this link](https://forkify-api.herokuapp.com/v2):
+
+## Context
+
+This is the final project for ["The Complete JavaScript Course 2024: From Zero to Expert!"](https://www.udemy.com/course/the-complete-javascript-course/) completed July 2023.
+
+I wrote all the JavaScript code for this app, always writing code before watching the taught content of the module. All CSS styles and proposed HTML markup for this project were provided by the course instructor [Jonas Schmedtmann](https://codingheroes.io/). The app is **not** styled for mobile, only for desktop.
