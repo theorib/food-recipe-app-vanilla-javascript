@@ -300,6 +300,30 @@
   }
 }
 
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 10rem;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 10rem);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  @media only screen and (max-width: base.$bp-small) {
+    display: block;
+  }
+
+  &--active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .mobile-menu {
   display: none;
   position: absolute;
@@ -336,12 +360,11 @@
 
   &__list {
     list-style: none;
-    padding: 1rem 0;
+    // padding: 1rem 0;
   }
 
   &__item {
     border-bottom: 1px solid base.$color-grey-light-2;
-
     &:last-child {
       border-bottom: none;
     }
@@ -349,7 +372,7 @@
 
   &__btn {
     width: 100%;
-    padding: 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     font-family: inherit;
     color: inherit;
     font-size: 1.4rem;
@@ -368,6 +391,7 @@
       width: 2rem;
       fill: base.$color-primary;
       margin-right: 1rem;
+      pointer-events: none;
     }
 
     &:hover {
@@ -375,7 +399,9 @@
     }
 
     &:focus {
-      outline: none;
+      outline: 2px solid base.$color-primary;
+      outline-offset: 2px;
+      background-color: base.$color-grey-light-1;
     }
   }
 }
@@ -387,7 +413,7 @@
   border-radius: 0 !important;
   padding: 0 !important;
   background: none !important;
-  margin-top: 1rem;
+  // margin-top: 1rem;
   border-top: 1px solid base.$color-grey-light-2;
 
   // Hidden by default
