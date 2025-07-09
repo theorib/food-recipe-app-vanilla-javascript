@@ -59,4 +59,4 @@ Replace `yourApiKey` with a key generated from [this link](https://forkify-api.h
 
 This is the final project for ["The Complete JavaScript Course 2024: From Zero to Expert!"](https://www.udemy.com/course/the-complete-javascript-course/) completed July 2023.
 
-I wrote all the JavaScript code for this app, always writing code before watching the taught content of the module. All CSS styles and proposed HTML markup for this project were provided by the course instructor [Jonas Schmedtmann](https://codingheroes.io/). This app was **not** styled for mobile, only for desktop in this instance.
+I wrote all the JavaScript code for this app, always writing code before watching the taught content of the module. Most CSS styles and proposed HTML markup for this project were provided by the course instructor [Jonas Schmedtmann](https://codingheroes.io/).
