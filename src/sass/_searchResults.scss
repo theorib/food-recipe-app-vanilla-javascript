@@ -13,16 +13,19 @@
 
 .pagination {
   margin-top: auto;
-  padding: 0 3.5rem;
+  padding: 2rem 4rem;
 
   &::after {
     content: '';
     display: table;
     clear: both;
   }
-
   @media only screen and (max-width: base.$bp-medium) {
-    padding: 0 2rem;
+    padding: 1.5rem 3rem;
+  }
+
+  @media only screen and (max-width: base.$bp-small) {
+    padding: 2rem 1.5rem;
   }
 
   &__btn {
