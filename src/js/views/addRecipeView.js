@@ -4,7 +4,7 @@ class AddRecipeView extends View {
   _parentELement = document.querySelector('.upload');
   _window = document.querySelector('.add-recipe-window');
   _overlay = document.querySelector('.overlay');
-  _btnOpen = document.querySelector('.nav__btn--add-recipe');
+  _btnOpen = document.querySelectorAll('.nav__btn--add-recipe');
   _btnClose = document.querySelector('.btn--close-modal');
 
   _errorMessage = 'There was an error uploading the recipe';
@@ -21,7 +21,9 @@ class AddRecipeView extends View {
   }
 
   _addHandlerOpenModal() {
-    this._btnOpen.addEventListener('click', this.toggleModal.bind(this));
+    this._btnOpen.forEach(btn => {
+      btn.addEventListener('click', this.toggleModal.bind(this));
+    });
   }
 
   _addHandlerCloseModal() {

@@ -1,9 +1,10 @@
-@use "base";
+@use 'base';
 
 @use 'sass:color';
 
 .recipe {
   background-color: base.$color-grey-light-1;
+  overflow-x: hidden;
 
   ///////////
   // FIGURE
@@ -63,6 +64,17 @@
 
     @media only screen and (max-width: base.$bp-medium) {
       width: 70%;
+      font-size: 2.8rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      width: 80%;
+      font-size: 2.4rem;
+      transform: translate(-50%, 10%) skewY(-3deg);
+
+      span {
+        padding: 1rem 1.5rem;
+      }
     }
   }
 
@@ -72,6 +84,18 @@
     display: flex;
     align-items: center;
     padding: 7.5rem 8rem 3.5rem 8rem;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      padding: 6rem 4rem 3rem 4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      padding: 8rem 2rem 3rem 2rem;
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
 
   &__info {
@@ -82,6 +106,25 @@
 
     &:not(:last-child) {
       margin-right: 4.5rem;
+    }
+
+    @media only screen and (max-width: base.$bp-medium) {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      font-size: 1.3rem;
+      margin-bottom: 0;
+      text-align: center;
+
+      &:not(:last-child) {
+        margin-right: 0;
+      }
     }
   }
 
@@ -133,6 +176,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      padding: 3rem 4rem;
+      font-size: 1.4rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      padding: 2rem 2rem;
+      font-size: 1.3rem;
+    }
   }
 
   &__ingredient-list {
@@ -140,6 +193,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem 3rem;
     list-style: none;
+
+    @media only screen and (max-width: base.$bp-small) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
   }
 
   &__ingredient {
@@ -168,6 +226,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      padding: 3rem 4rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      padding: 2rem 2rem;
+    }
   }
 
   &__directions-text {
@@ -175,6 +241,16 @@
     text-align: center;
     margin-bottom: 3.5rem;
     color: base.$color-grey-dark-2;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+    }
   }
 
   &__publisher {

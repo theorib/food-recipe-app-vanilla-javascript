@@ -21,6 +21,14 @@
     &--active {
       background-color: base.$color-grey-light-1;
     }
+
+    @media only screen and (max-width: base.$bp-medium) {
+      padding: 1.2rem 2rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      padding: 1rem 1.5rem;
+    }
   }
 
   &__fig {
@@ -31,6 +39,18 @@
     margin-right: 2rem;
     position: relative;
     backface-visibility: hidden;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      flex: 0 0 5rem;
+      height: 5rem;
+      margin-right: 1.5rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      flex: 0 0 4.5rem;
+      height: 4.5rem;
+      margin-right: 1rem;
+    }
 
     &::before {
       content: '';
@@ -77,6 +97,16 @@
     max-width: 25rem;
     white-space: nowrap;
     overflow: hidden;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      font-size: 1.3rem;
+      max-width: 20rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      font-size: 1.2rem;
+      max-width: 15rem;
+    }
   }
 
   &__publisher {
@@ -84,6 +114,14 @@
     color: base.$color-grey-dark-2;
     text-transform: uppercase;
     font-weight: 600;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      font-size: 1.1rem;
+    }
+
+    @media only screen and (max-width: base.$bp-small) {
+      font-size: 1rem;
+    }
   }
 
   &__user-generated {

@@ -28,6 +28,19 @@ const controlRecipes = async function () {
 
     // 3) Render a recipe if there is one
     recipeView.render(model.state.recipe);
+
+    // 4) Scroll to recipe on mobile after rendering
+    if (window.innerWidth <= 600) { // Mobile breakpoint
+      setTimeout(() => {
+        const recipeElement = document.querySelector('.recipe');
+        if (recipeElement) {
+          recipeElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100);
+    }
   } catch (err) {
     console.log(err);
     recipeView.renderError();
@@ -165,5 +178,75 @@ const init = function () {
   paginationView.addHandlerRenderPagination(controlPagination);
 };
 
+// Mobile menu functionality
+const initMobileMenu = function () {
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (!hamburgerMenu || !mobileMenu) return;
+  
+  // Handle mobile bookmarks elements
+  const mobileBookmarksBtn = mobileMenu.querySelector('.nav__btn--bookmarks');
+  const mobileBookmarksDropdown = mobileMenu.querySelector('.mobile-bookmarks');
+  
+  // Close mobile menu and bookmarks function
+  const closeMobileMenu = function() {
+    hamburgerMenu.classList.remove('hamburger-menu--active');
+    mobileMenu.classList.remove('mobile-menu--active');
+    if (mobileBookmarksDropdown) {
+      mobileBookmarksDropdown.classList.remove('mobile-bookmarks--active');
+    }
+  };
+  
+  hamburgerMenu.addEventListener('click', function() {
+    hamburgerMenu.classList.toggle('hamburger-menu--active');
+    mobileMenu.classList.toggle('mobile-menu--active');
+  });
+  
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    const isMenuOpen = mobileMenu.classList.contains('mobile-menu--active');
+    const isClickOnHamburger = hamburgerMenu.contains(e.target);
+    const isClickOnMenu = mobileMenu.contains(e.target);
+    
+    if (isMenuOpen && !isClickOnHamburger && !isClickOnMenu) {
+      closeMobileMenu();
+    }
+  });
+  
+  // Handle mobile bookmarks toggle
+  if (mobileBookmarksBtn && mobileBookmarksDropdown) {
+    mobileBookmarksBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      mobileBookmarksDropdown.classList.toggle('mobile-bookmarks--active');
+    });
+  }
+  
+  // Close mobile menu when clicking on add recipe
+  const mobileAddRecipeBtn = mobileMenu.querySelector('.nav__btn--add-recipe');
+  if (mobileAddRecipeBtn) {
+    mobileAddRecipeBtn.addEventListener('click', closeMobileMenu);
+  }
+  
+  // Close mobile menu when clicking on bookmark links
+  mobileMenu.addEventListener('click', function(e) {
+    const bookmarkLink = e.target.closest('.preview__link');
+    if (bookmarkLink) {
+      closeMobileMenu();
+    }
+  });
+  
+  // Also close when clicking directly on bookmark list items
+  if (mobileBookmarksDropdown) {
+    mobileBookmarksDropdown.addEventListener('click', function(e) {
+      const bookmarkLink = e.target.closest('.preview__link');
+      if (bookmarkLink) {
+        closeMobileMenu();
+      }
+    });
+  }
+};
+
 // Initialize the app, adding event listeners to the views and getting bookmarks from local storage
 init();
+initMobileMenu();

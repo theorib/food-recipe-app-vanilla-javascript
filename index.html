@@ -19,8 +19,8 @@
     <header class="header">
       <a href="/"><img src="src/img/logo.png" alt="Logo" class="header__logo" /></a>
       <form class="search">
-        <input type="text" class="search__field" placeholder="Search over 1,000,000 recipes..." />
-        <button class="btn search__btn">
+        <input type="text" class="search__field" placeholder="Search recipes..." />
+        <button class="btn search__btn" aria-label="Search recipes">
           <svg class="search__icon">
             <use href="src/img/icons.svg#icon-search"></use>
           </svg>
@@ -76,6 +76,48 @@
           </li>
         </ul>
       </nav>
+
+      <div class="mobile-nav">
+        <button class="hamburger-menu" id="hamburger-menu">
+          <div class="hamburger-menu__line"></div>
+          <div class="hamburger-menu__line"></div>
+          <div class="hamburger-menu__line"></div>
+        </button>
+        <div class="mobile-menu" id="mobile-menu">
+          <ul class="mobile-menu__list">
+            <li class="mobile-menu__item">
+              <button class="mobile-menu__btn nav__btn--add-recipe">
+                <svg>
+                  <use href="src/img/icons.svg#icon-edit"></use>
+                </svg>
+                <span>Add recipe</span>
+              </button>
+            </li>
+            <li class="mobile-menu__item">
+              <button class="mobile-menu__btn nav__btn--bookmarks">
+                <svg>
+                  <use href="src/img/icons.svg#icon-bookmark"></use>
+                </svg>
+                <span>Bookmarks</span>
+              </button>
+              <div class="bookmarks mobile-bookmarks">
+                <ul class="bookmarks__list">
+                  <div class="message">
+                    <div>
+                      <svg>
+                        <use href="src/img/icons.svg#icon-smile"></use>
+                      </svg>
+                    </div>
+                    <p>
+                      No bookmarks yet. Find a nice recipe and bookmark it :)
+                    </p>
+                  </div>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </header>
 
     <div class="search-results">
