@@ -38,7 +38,7 @@
 
   .btn--close-modal {
     font-family: inherit;
-    color: inherit;
+    color: base.$color-grey-dark-1;
     position: absolute;
     top: 0.5rem;
     right: 1.6rem;
@@ -94,7 +94,7 @@
     & label {
       font-size: 1.5rem;
       font-weight: 600;
-      color: inherit;
+      color: base.$color-grey-dark-1;
 
       @media only screen and (max-width: base.$bp-medium) {
         font-size: 1.4rem;
@@ -107,6 +107,8 @@
 
     & input {
       font-size: 1.5rem;
+      font-family: inherit;
+      color: base.$color-grey-dark-1;
       padding: 0.8rem 1rem;
       border: 1px solid #ddd;
       border-radius: 0.5rem;
@@ -146,6 +148,7 @@
   &__heading {
     font-size: 2.25rem;
     font-weight: 700;
+    color: base.$color-grey-dark-1;
     text-transform: uppercase;
     margin-bottom: 1rem;
     grid-column: 1/-1;

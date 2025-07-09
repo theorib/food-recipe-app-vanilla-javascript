@@ -73,7 +73,7 @@ body {
 
   @media only screen and (max-width: $bp-medium) {
     grid-template-columns: 1fr;
-    grid-template-rows: 10rem max-content 1fr max-content;
+    grid-template-rows: 10rem 1fr max-content max-content;
     grid-template-areas:
       'header'
       'search'
@@ -84,6 +84,6 @@ body {
   }
 
   @media only screen and (max-width: $bp-small) {
-    grid-template-rows: 10rem max-content 1fr max-content;
+    grid-template-rows: 10rem 1fr max-content max-content;
   }
 }
