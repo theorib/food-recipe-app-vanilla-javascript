@@ -11,7 +11,6 @@
   &__fig {
     height: 32rem;
     position: relative;
-    // transform: scale(1.04) translateY(-1px);
     transform-origin: top;
 
     &::before {
@@ -86,15 +85,26 @@
     padding: 7.5rem 8rem 3.5rem 8rem;
 
     @media only screen and (max-width: base.$bp-medium) {
-      padding: 6rem 4rem 3rem 4rem;
+      padding: 6rem 3rem 3rem 3rem;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     @media only screen and (max-width: base.$bp-small) {
-      padding: 8rem 2rem 3rem 2rem;
-      flex-direction: column;
-      gap: 2rem;
+      padding: 4rem 1.5rem 3rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr max-content;
+      grid-template-rows: 1fr 1fr;
+      grid-gap: 2rem;
+      .btn--bookmark {
+        grid-column: 2 / 2;
+        justify-self: end;
+        grid-row: 1 / 1;
+      }
+      &__user-generated {
+        grid-column: 2 /2;
+        grid-row: 2 / 2;
+      }
     }
   }
 
@@ -121,6 +131,7 @@
       font-size: 1.3rem;
       margin-bottom: 0;
       text-align: center;
+      grid-column: 1 / 1;
 
       &:not(:last-child) {
         margin-right: 0;
@@ -142,6 +153,7 @@
 
   &__info-buttons {
     display: flex;
+    align-items: center;
     margin-left: 1.6rem;
     transform: translateY(-1px);
   }
@@ -152,8 +164,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 4rem;
-    width: 4rem;
+    height: 4.5rem;
+    width: 4.5rem;
     border-radius: 10rem;
 
     margin-left: auto;
@@ -163,6 +175,9 @@
       height: 2.25rem;
       width: 2.25rem;
       fill: base.$color-primary;
+    }
+    @media only screen and (max-width: base.$bp-small) {
+      margin-right: 0;
     }
   }
 

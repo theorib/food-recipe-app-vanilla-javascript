@@ -1,0 +1,27 @@
+@use 'base';
+.footer {
+  grid-area: footer;
+  background-color: base.$color-grey-light-2;
+  padding: 2rem 4rem;
+
+  @media only screen and (max-width: base.$bp-medium) {
+    padding: 1.5 3rem;
+  }
+
+  @media only screen and (max-width: base.$bp-small) {
+    padding: 0.75rem 1.5rem;
+  }
+  .copyright {
+    color: base.$color-grey-dark-2;
+    font-size: 1.2rem;
+
+    @media only screen and (max-width: base.$bp-medium) {
+      font-size: 1.1rem;
+    }
+
+    .twitter-link:link,
+    .twitter-link:visited {
+      color: base.$color-grey-dark-2;
+    }
+  }
+}

@@ -58,11 +58,12 @@ body {
   box-shadow: 0 2rem 6rem 0.5rem rgba($color-grey-dark-1, 0.2);
 
   display: grid;
-  grid-template-rows: 10rem minmax(100rem, auto);
+  grid-template-rows: 10rem minmax(100rem, auto) max-content;
   grid-template-columns: 1fr 2fr;
   grid-template-areas:
-    'head head'
-    'list recipe';
+    'header header'
+    'search recipe'
+    'footer footer';
 
   @media only screen and (max-width: $bp-large) {
     max-width: 100%;
@@ -72,16 +73,17 @@ body {
 
   @media only screen and (max-width: $bp-medium) {
     grid-template-columns: 1fr;
-    grid-template-rows: 10rem 1fr 1fr;
+    grid-template-rows: 10rem max-content max-content max-content;
     grid-template-areas:
-      'head'
-      'list'
-      'recipe';
+      'header'
+      'search'
+      'recipe'
+      'footer';
     min-height: 100vh;
     overflow-x: hidden;
   }
 
   @media only screen and (max-width: $bp-small) {
-    grid-template-rows: 8rem 1fr 1fr;
+    grid-template-rows: 10rem max-content max-content max-content;
   }
 }

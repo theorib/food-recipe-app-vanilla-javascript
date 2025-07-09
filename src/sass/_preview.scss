@@ -1,4 +1,4 @@
-@use "base";
+@use 'base';
 
 @use 'sass:color';
 .preview {
@@ -7,10 +7,17 @@
     &:visited {
       display: flex;
       align-items: center;
-      padding: 1.5rem 3.25rem;
+      padding: 1.5rem 4rem;
       transition: all 0.3s;
       border-right: 1px solid #fff;
       text-decoration: none;
+      @media only screen and (max-width: base.$bp-medium) {
+        padding: 1.2rem 3rem;
+      }
+
+      @media only screen and (max-width: base.$bp-small) {
+        padding: 1rem 1.5rem;
+      }
     }
 
     &:hover {
@@ -20,14 +27,6 @@
 
     &--active {
       background-color: base.$color-grey-light-1;
-    }
-
-    @media only screen and (max-width: base.$bp-medium) {
-      padding: 1.2rem 2rem;
-    }
-
-    @media only screen and (max-width: base.$bp-small) {
-      padding: 1rem 1.5rem;
     }
   }
 
