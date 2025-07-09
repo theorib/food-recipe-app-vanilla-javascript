@@ -182,43 +182,111 @@ const init = function () {
 const initMobileMenu = function () {
   const hamburgerMenu = document.getElementById('hamburger-menu');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
   
-  if (!hamburgerMenu || !mobileMenu) return;
+  if (!hamburgerMenu || !mobileMenu || !mobileMenuOverlay) return;
   
   // Handle mobile bookmarks elements
   const mobileBookmarksBtn = mobileMenu.querySelector('.nav__btn--bookmarks');
   const mobileBookmarksDropdown = mobileMenu.querySelector('.mobile-bookmarks');
   
+  // Get all focusable elements in the mobile menu
+  const getFocusableElements = function() {
+    const buttons = mobileMenu.querySelectorAll('button');
+    const bookmarkLinks = mobileMenu.querySelectorAll('.mobile-bookmarks--active .preview__link');
+    return [...buttons, ...bookmarkLinks];
+  };
+  
   // Close mobile menu and bookmarks function
   const closeMobileMenu = function() {
     hamburgerMenu.classList.remove('hamburger-menu--active');
     mobileMenu.classList.remove('mobile-menu--active');
+    mobileMenuOverlay.classList.remove('mobile-menu-overlay--active');
     document.body.style.overflow = '';
     if (mobileBookmarksDropdown) {
       mobileBookmarksDropdown.classList.remove('mobile-bookmarks--active');
     }
+    
+    // Remove tabindex from all focusable elements when closed
+    const allFocusableElements = getFocusableElements();
+    allFocusableElements.forEach(el => {
+      el.setAttribute('tabindex', '-1');
+    });
   };
   
   hamburgerMenu.addEventListener('click', function() {
     hamburgerMenu.classList.toggle('hamburger-menu--active');
     mobileMenu.classList.toggle('mobile-menu--active');
+    mobileMenuOverlay.classList.toggle('mobile-menu-overlay--active');
     
     // Prevent body scrolling when menu is open
     if (mobileMenu.classList.contains('mobile-menu--active')) {
       document.body.style.overflow = 'hidden';
+      
+      // Enable tabindex for menu items when opened
+      const focusableElements = getFocusableElements();
+      focusableElements.forEach(el => {
+        el.setAttribute('tabindex', '0');
+      });
+      
+      // Focus first menu item
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      }
     } else {
       document.body.style.overflow = '';
+      
+      // Remove tabindex from menu items when closed
+      const focusableElements = getFocusableElements();
+      focusableElements.forEach(el => {
+        el.setAttribute('tabindex', '-1');
+      });
     }
   });
   
-  // Close mobile menu when clicking outside
+  // Close mobile menu when clicking outside or on overlay
   document.addEventListener('click', function(e) {
     const isMenuOpen = mobileMenu.classList.contains('mobile-menu--active');
     const isClickOnHamburger = hamburgerMenu.contains(e.target);
     const isClickOnMenu = mobileMenu.contains(e.target);
+    const isClickOnOverlay = mobileMenuOverlay.contains(e.target);
     
-    if (isMenuOpen && !isClickOnHamburger && !isClickOnMenu) {
+    if (isMenuOpen && (!isClickOnHamburger && !isClickOnMenu || isClickOnOverlay)) {
       closeMobileMenu();
+    }
+  });
+  
+  // Handle keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const isMenuOpen = mobileMenu.classList.contains('mobile-menu--active');
+    
+    if (isMenuOpen) {
+      // Close menu with Escape key
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+        hamburgerMenu.focus();
+      }
+      
+      // Tab navigation within menu
+      if (e.key === 'Tab') {
+        const focusableElements = getFocusableElements();
+        const focusedElement = document.activeElement;
+        const focusedIndex = Array.from(focusableElements).indexOf(focusedElement);
+        
+        if (e.shiftKey) {
+          // Shift+Tab (backwards)
+          if (focusedIndex === 0) {
+            e.preventDefault();
+            focusableElements[focusableElements.length - 1].focus();
+          }
+        } else {
+          // Tab (forwards)
+          if (focusedIndex === focusableElements.length - 1) {
+            e.preventDefault();
+            focusableElements[0].focus();
+          }
+        }
+      }
     }
   });
   
@@ -227,6 +295,12 @@ const initMobileMenu = function () {
     mobileBookmarksBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       mobileBookmarksDropdown.classList.toggle('mobile-bookmarks--active');
+      
+      // Update focus management when bookmarks are toggled
+      const focusableElements = getFocusableElements();
+      focusableElements.forEach(el => {
+        el.setAttribute('tabindex', '0');
+      });
     });
   }
   
@@ -244,12 +318,36 @@ const initMobileMenu = function () {
     }
   });
   
+  // Close mobile menu when using keyboard on bookmark links
+  mobileMenu.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const bookmarkLink = e.target.closest('.preview__link');
+      if (bookmarkLink) {
+        e.preventDefault();
+        bookmarkLink.click(); // Trigger the click event
+        closeMobileMenu();
+      }
+    }
+  });
+  
   // Also close when clicking directly on bookmark list items
   if (mobileBookmarksDropdown) {
     mobileBookmarksDropdown.addEventListener('click', function(e) {
       const bookmarkLink = e.target.closest('.preview__link');
       if (bookmarkLink) {
         closeMobileMenu();
+      }
+    });
+    
+    // Also handle keyboard events on bookmark dropdown
+    mobileBookmarksDropdown.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const bookmarkLink = e.target.closest('.preview__link');
+        if (bookmarkLink) {
+          e.preventDefault();
+          bookmarkLink.click(); // Trigger the click event
+          closeMobileMenu();
+        }
       }
     });
   }
