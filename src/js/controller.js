@@ -29,8 +29,8 @@ const controlRecipes = async function () {
     // 3) Render a recipe if there is one
     recipeView.render(model.state.recipe);
 
-    // 4) Scroll to recipe on mobile after rendering
-    if (window.innerWidth <= 600) { // Mobile breakpoint
+    // 4) Scroll to recipe on mobile and medium screens after rendering
+    if (window.innerWidth <= 980) { // Mobile and medium breakpoint ($bp-medium)
       setTimeout(() => {
         const recipeElement = document.querySelector('.recipe');
         if (recipeElement) {
@@ -193,6 +193,7 @@ const initMobileMenu = function () {
   const closeMobileMenu = function() {
     hamburgerMenu.classList.remove('hamburger-menu--active');
     mobileMenu.classList.remove('mobile-menu--active');
+    document.body.style.overflow = '';
     if (mobileBookmarksDropdown) {
       mobileBookmarksDropdown.classList.remove('mobile-bookmarks--active');
     }
@@ -201,6 +202,13 @@ const initMobileMenu = function () {
   hamburgerMenu.addEventListener('click', function() {
     hamburgerMenu.classList.toggle('hamburger-menu--active');
     mobileMenu.classList.toggle('mobile-menu--active');
+    
+    // Prevent body scrolling when menu is open
+    if (mobileMenu.classList.contains('mobile-menu--active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   });
   
   // Close mobile menu when clicking outside
