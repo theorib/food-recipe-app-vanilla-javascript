@@ -16,7 +16,8 @@
   }
 
   &:focus {
-    outline: none;
+    outline: 3px solid base.$color-primary;
+    outline-offset: 3px;
   }
 
   // & > *:first-child {

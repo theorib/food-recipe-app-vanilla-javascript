@@ -14,10 +14,29 @@ class AddRecipeView extends View {
     super();
     this._addHandlerOpenModal();
     this._addHandlerCloseModal();
+    this._addKeyboardHandlers();
   }
   toggleModal(data) {
     this._overlay.classList.toggle('hidden');
     this._window.classList.toggle('hidden');
+    
+    // Handle accessibility
+    const isModalOpen = !this._overlay.classList.contains('hidden');
+    const mainContent = document.querySelector('.container');
+    
+    if (isModalOpen) {
+      // Hide main content from screen readers
+      mainContent.setAttribute('aria-hidden', 'true');
+      
+      // Focus first focusable element in modal
+      const firstFocusableElement = this._window.querySelector('input, button, textarea, select');
+      if (firstFocusableElement) {
+        firstFocusableElement.focus();
+      }
+    } else {
+      // Show main content to screen readers
+      mainContent.removeAttribute('aria-hidden');
+    }
   }
 
   _addHandlerOpenModal() {
@@ -31,6 +50,47 @@ class AddRecipeView extends View {
     targetElements.forEach(element =>
       element.addEventListener('click', this.toggleModal.bind(this))
     );
+  }
+
+  _addKeyboardHandlers() {
+    // Handle Escape key to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !this._overlay.classList.contains('hidden')) {
+        this.toggleModal();
+      }
+    });
+
+    // Handle Tab key for focus trapping
+    this._window.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        this._trapFocus(e);
+      }
+    });
+  }
+
+  _trapFocus(e) {
+    const focusableElements = this._window.querySelectorAll(
+      'input, button, textarea, select, [href], [tabindex]:not([tabindex="-1"])'
+    );
+    
+    if (focusableElements.length === 0) return;
+    
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.shiftKey) {
+      // Shift+Tab (backwards)
+      if (document.activeElement === firstFocusableElement) {
+        e.preventDefault();
+        lastFocusableElement.focus();
+      }
+    } else {
+      // Tab (forwards)
+      if (document.activeElement === lastFocusableElement) {
+        e.preventDefault();
+        firstFocusableElement.focus();
+      }
+    }
   }
 
   addHandlerUpload(handler) {
