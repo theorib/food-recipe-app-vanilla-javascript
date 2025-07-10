@@ -82,7 +82,8 @@
   &__details {
     display: flex;
     align-items: center;
-    padding: 7.5rem 8rem 3.5rem 8rem;
+    gap: 2rem;
+    padding: 7.5rem 4rem 3.5rem 4rem;
 
     @media only screen and (max-width: base.$bp-medium) {
       padding: 6rem 3rem 3rem 3rem;
@@ -102,7 +103,7 @@
         grid-row: 1 / 1;
       }
       &__user-generated {
-        grid-column: 2 /2;
+        grid-column: 2 / 2;
         grid-row: 2 / 2;
       }
     }
@@ -115,7 +116,7 @@
     align-items: center;
 
     &:not(:last-child) {
-      margin-right: 4.5rem;
+      // margin-right: 4.5rem;
     }
 
     @media only screen and (max-width: base.$bp-medium) {
@@ -160,16 +161,13 @@
 
   &__user-generated {
     background-color: color.scale(base.$color-grey-light-2, $lightness: 2%);
-
+    margin-left: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 4.5rem;
     width: 4.5rem;
     border-radius: 10rem;
-
-    margin-left: auto;
-    margin-right: 1.75rem;
 
     svg {
       height: 2.25rem;
