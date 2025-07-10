@@ -2,8 +2,8 @@ import { RESULTS_PER_PAGE } from './config.js';
 import { AJAX } from './helpers.js';
 
 // asign the environment variables to API_KEY and API_URL constants
-const API_KEY = process.env.API_KEY;
-const API_URL = process.env.API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Create the state object
 export const state = {
