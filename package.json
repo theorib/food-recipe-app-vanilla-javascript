@@ -12,10 +12,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "sass": "^1.89.2",
-    "vite": "^7.0.3"
+    "sass": "^1.93.2",
+    "vite": "^7.1.9"
   },
   "dependencies": {
-    "fraction.js": "^5.2.2"
+    "fraction.js": "^5.3.4"
   }
 }
